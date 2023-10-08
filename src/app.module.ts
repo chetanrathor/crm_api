@@ -7,6 +7,8 @@ import * as winston from 'winston';
 import { AppController } from './app.controller';
 import { ApiConfigService } from './shared/api-config.service';
 import { SharedModule } from './shared/shared.module';
+import { HumanResourceModule } from './modules/human-resource/human-resource.module';
+import { PersonalizedEmailModule } from './modules/personalized-email/personalized-email.module';
 
 @Module({
   imports: [
@@ -23,6 +25,8 @@ import { SharedModule } from './shared/shared.module';
       transports: [new winston.transports.Console()],
       // options
     }),
+    HumanResourceModule,
+    PersonalizedEmailModule,
   ],
   providers: [],
   exports: [TypeOrmModule],
