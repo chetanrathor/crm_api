@@ -24,7 +24,9 @@ export class HumanResourceService {
 
   async findAll(getAllHumanResourcesDto: GetAllHumanResources) {
     let { limit, offset, search, order } = getAllHumanResourcesDto
-    const { skip, take } = processPagination({ limit, offset })
+    const skip = offset,
+    take = limit
+
     const findWhere: FindOptionsWhere<HumanResource>[] = []
     let where = []
     if (search) {
@@ -34,7 +36,7 @@ export class HumanResourceService {
     let orderIn: FindOptionsOrderValue = order == 'ASC' || order == 'DESC' ? order : 'DESC'
 
 
-    const [rows, count] = await this.repository.findAndCount({ where: findWhere.length ? findWhere : {}, relations: { personalizeEmails: true }, order: { createdAt: orderIn } })
+    const [rows, count] = await this.repository.findAndCount({ where: findWhere.length ? findWhere : {}, relations: { personalizeEmails: true }, order: { createdAt: orderIn },skip,take })
     return { rows, count }
   }
 

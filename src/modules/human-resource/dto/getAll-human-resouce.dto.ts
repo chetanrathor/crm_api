@@ -1,15 +1,17 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
-import { IsOptional, IsString } from "class-validator";
+import { IsNumberString, IsOptional, IsString } from "class-validator";
 
 export class GetAllHumanResources {
 
     @ApiProperty({example:'0'})
     @IsString()
-    limit: string
+    @IsNumberString()
+    limit: number
 
     @ApiProperty({example:'0'})
+    @IsNumberString()
     @IsString()
-    offset: string
+    offset: number
 
     @ApiPropertyOptional()
     @IsOptional()

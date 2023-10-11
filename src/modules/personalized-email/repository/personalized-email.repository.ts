@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
+import { retry } from "rxjs";
 import { FindManyOptions, FindOneOptions, FindOptionsWhere, Repository } from "typeorm";
 import { PersonalizedEmail } from "../entities/personalized-email.entity";
 
@@ -29,5 +30,9 @@ export class PersonalizedEmailRepository {
 
     async softDelete(criterial: FindOptionsWhere<PersonalizedEmail>) {
         return await this.repository.softDelete(criterial)
+    }
+
+    async count(options: FindManyOptions<PersonalizedEmail>) {
+        return this.repository.count(options)
     }
 }

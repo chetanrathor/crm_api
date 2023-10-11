@@ -8,6 +8,7 @@ import { PersonalizedEmailRepository } from './repository/personalized-email.rep
 @Module({
   imports: [TypeOrmModule.forFeature([PersonalizedEmail])],
   controllers: [PersonalizedEmailController],
-  providers: [PersonalizedEmailRepository,PersonalizedEmailService,]
+  providers: [PersonalizedEmailRepository,PersonalizedEmailService,],
+  exports:[PersonalizedEmailService]
 })
 export class PersonalizedEmailModule {}
